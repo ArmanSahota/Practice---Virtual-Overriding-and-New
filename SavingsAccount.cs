@@ -24,9 +24,21 @@ namespace Practice___Virtual__Overriding__and_New
 
         public override bool Deposit(double amount)
         {
-            if (base.Deposit(amount))
+            if (amount > 0)
             {
                 _balance += _balance * _interest;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public override bool Withdraw(double amount)
+        {
+            if (amount > 0 && amount <= _balance)
+            {
+                _balance -= amount;
                 return true;
             }
             else

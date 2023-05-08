@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Practice___Virtual__Overriding__and_New
 {
-    internal class BankAccount
+    internal abstract class BankAccount
     {
         
         string _name;
@@ -37,37 +37,18 @@ namespace Practice___Virtual__Overriding__and_New
             _accountNumber = _accountNumberGenerator.Next(100000, 999999);
         }
 
-        public virtual bool Deposit(double amount)
-        {
-            if (amount > 0)
-            {
-                _balance += amount;
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        public virtual bool Withdraw(double amount)
-        {
-            if (amount > 0 && amount <= _balance)
-            {
-                _balance -= amount;
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-            public override string ToString()
+        public abstract bool Deposit(double amount);
+
+        public abstract bool Withdraw(double amount);
+
+        public override string ToString()
         {
             return $"{this.GetType().Name} - {_name} - {_accountNumber} - {_balance:C}";
         }
     }
+}
 
- }
+ 
 
 
 

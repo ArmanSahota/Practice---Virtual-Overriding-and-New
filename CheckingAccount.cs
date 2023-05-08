@@ -22,18 +22,33 @@ namespace Practice___Virtual__Overriding__and_New
             set { _overdraftFee = value; }
         }
 
-        public override bool Withdraw(double amount)
+        public override bool Deposit(double amount)
         {
-            if (base.Withdraw(amount))
+            if (amount > 0)
             {
+                _balance += amount;
                 return true;
             }
             else
             {
-                if (_balance < 0)
-                {
-                    _balance -= _overdraftFee;
-                }
+                return false;
+            }
+        }
+
+        public override bool Withdraw(double amount)
+        {
+            if (amount > 0 && amount <= _balance)
+            {
+                _balance -= amount;
+                return true;
+            }
+            else if (amount < 0)
+            {
+                return false;
+            }
+            else
+            {
+                _balance -= _overdraftFee;
                 return false;
             }
         }
@@ -44,4 +59,5 @@ namespace Practice___Virtual__Overriding__and_New
         }
     }
 }
+
 
